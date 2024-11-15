@@ -1,0 +1,31 @@
+{# templates/project/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Проекты{% endblock %}
+
+{% block body %}
+    <h1>Проекты</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Заказчик</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.customer }}</td>
+                <td>
+                    <a href="{{ path('project_delete_confirm', { id: project.id }) }}" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('project_new') }}" class="btn btn-success">Добавить новый проект</a>
+{% endblock %}

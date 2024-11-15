@@ -1,0 +1,27 @@
+{# templates/developer/transfer.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Перевод{% endblock %}
+
+{% block body %}
+    <h1>Перевод разработчика на другой проект</h1>
+
+    <p>Разработчик: {{ developer.fullName }}</p>
+
+    <form method="post" action="{{ path('developer_transfer', { id: developer.id }) }}">
+        <div class="form-group">
+            <label for="project">Выбрать новый проект</label>
+            <select id="project" name="project" class="form-control">
+                {% for project in projects %}
+                    <option value="{{ project.id }}" {% if project.id == developer.project.id %}selected{% endif %}>
+                        {{ project.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Перевод</button>
+    </form>
+
+    <a href="{{ path('developer_list') }}" class="btn btn-secondary">Вернуться к списку</a>
+{% endblock %}

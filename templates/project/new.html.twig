@@ -1,0 +1,15 @@
+{# templates/project/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Добавить новый проект{% endblock %}
+
+{% block body %}
+    <h1>Добавить новый проект</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.customer) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('project_list') }}" class="btn btn-secondary">Вернуться к списку проектов</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{# templates/project/delete.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Удаление{% endblock %}
+
+{% block body %}
+    <h1>Удаление проекта</h1>
+
+    <p>Вы правда хотите удалить "{{ project.name }}"?</p>
+
+    <form method="post" action="{{ path('project_delete', { id: project.id }) }}">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
+        <button type="submit" class="btn btn-danger">Да, удалить</button>
+    </form>
+
+    <a href="{{ path('project_list') }}" class="btn btn-secondary">Отмена</a>
+{% endblock %}

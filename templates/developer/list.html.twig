@@ -1,0 +1,46 @@
+{# templates/developer/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Разработчики{% endblock %}
+
+{% block body %}
+    <h1>Разработчики</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Номер</th>
+            <th>Проект</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for developer in developers %}
+            <tr>
+                <td>{{ developer.fullName }}</td>
+                <td>{{ developer.email }}</td>
+                <td>{{ developer.phone }}</td>
+                <td>
+                    {% if developer.project %}
+                        {{ developer.project.name }}
+                    {% else %}
+                        Нет проекта
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('developer_transfer', { id: developer.id }) }}" class="btn btn-warning">Перевод</a>
+
+                    <form method="post" action="{{ path('developer_delete', { id: developer.id }) }}" style="display: inline-block;" onsubmit="return confirm('Вы уверены?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ developer.id) }}">
+                        <button class="btn btn-danger">Уволить</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('developer_new') }}" class="btn btn-success">Добавить нового разработчика</a>
+{% endblock %}

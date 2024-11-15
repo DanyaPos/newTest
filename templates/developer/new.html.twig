@@ -1,0 +1,20 @@
+{# templates/developer/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Наймr{% endblock %}
+
+{% block body %}
+    <h1>Добавить нового разработчика</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.fullName) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.position) }}
+    {{ form_row(form.project) }}
+
+    <button class="btn btn-primary">Save</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('developer_list') }}" class="btn btn-secondary">Вернуться к списку</a>
+{% endblock %}
